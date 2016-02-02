@@ -3,3 +3,5 @@
 .DS_Store
 credentials
 saas_testsite.sqlite
+_installTop_/
+etc/

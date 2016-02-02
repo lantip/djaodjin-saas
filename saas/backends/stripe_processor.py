@@ -150,7 +150,7 @@ class StripeBackend(object):
             stmt_descr = provider.printable_name
         processor_charge = stripe.Charge.create(
             amount=amount, currency=unit, customer=customer.processor_card_key,
-            description=descr, statement_description=stmt_descr[:15], **kwargs)
+            description=descr, statement_descriptor=stmt_descr[:15], **kwargs)
         return self._charge_result(processor_charge)
 
     def create_charge_on_card(self, card, amount, unit,
@@ -166,7 +166,7 @@ class StripeBackend(object):
             stmt_descr = provider.printable_name
         processor_charge = stripe.Charge.create(
             amount=amount, currency=unit, card=card,
-            description=descr, statement_description=stmt_descr[:15], **kwargs)
+            description=descr, statement_descriptor=stmt_descr[:15], **kwargs)
         return self._charge_result(processor_charge)
 
     def create_transfer(self, provider, amount, unit, descr=None):
@@ -179,7 +179,7 @@ class StripeBackend(object):
             currency=unit, # XXX should be derived from organization bank
             recipient=provider.processor_deposit_key,
             description=descr,
-            statement_description=provider.printable_name,
+            statement_descriptor=provider.printable_name,
             **kwargs)
         created_at = datetime.datetime.fromtimestamp(transfer.created)
         return (transfer.id, created_at)

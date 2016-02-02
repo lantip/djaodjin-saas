@@ -45,8 +45,8 @@ _SETTINGS = {
     # Organization for which pass_contributor is always True.
     'BYPASS_CONTRIBUTOR_CHECK': [],
     'STRIPE_CLIENT_ID': None,
-    'STRIPE_PRIV_KEY': None,
-    'STRIPE_PUB_KEY': None,
+    'STRIPE_PRIV_KEY': settings.STRIPE_PRIV_KEY,
+    'STRIPE_PUB_KEY': settings.STRIPE_PUB_KEY,
 }
 _SETTINGS.update(getattr(settings, 'SAAS', {}))
 
